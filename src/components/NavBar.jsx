@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 const NavBar = () => {
   const path = usePathname();
-  if (path === "/login" || path === "/subject_chat" || path === "/support_chat") {
+  if (path === "/login" || path === "/support/chat") {
     return null;
   }
 
@@ -43,9 +43,9 @@ const NavBar = () => {
               onClick={() => setMenu(true)}
               className="min-[790px]:hidden cursor-pointer"
             />
-            <span className="text-orange-500 text-xl font-black">
+            <Link href="/dashboard" className="text-orange-500 text-xl font-black select-none cursor-pointer">
               مدار | Madar
-            </span>
+            </Link>
           </div>
           <nav className="max-[790px]:hidden">
             <ul className="flex gap-3">

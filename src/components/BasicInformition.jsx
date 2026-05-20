@@ -1,4 +1,5 @@
 import { useData } from "@/contexts/UserContext";
+import { useEffect, useRef } from "react";
 
 const BasicInformition = () => {
   const {
@@ -6,11 +7,20 @@ const BasicInformition = () => {
     showAction,
     editName,
     seteditName,
-    editMail,
     editPhone,
     seteditPhone,
-    seteditMail,
   } = useData();
+
+  const email = "ahmed@madar.com";
+  const InputFocus = useRef(null)
+
+  useEffect(() => {
+    if (showAction && InputFocus.current) {
+      InputFocus.current.focus();
+    }
+  }, [showAction])
+
+
   return (
     <section className="bg-white mt-5 px-5 py-5.5 rounded-3xl">
       <div className="border-r-3 border-orange-800 pr-2">
@@ -28,7 +38,12 @@ const BasicInformition = () => {
             onChange={(e) => seteditName(e.target.value)}
             readOnly={!showAction}
             maxLength={12}
-            className="bg-blue-50 focus:shadow-md focus:outline focus:outline-orange-500 duration-300 rounded-xl text-sm px-4 py-3"
+            ref={InputFocus}
+            className={`h-11 w-full rounded-xl border pl-10 pr-4 text-sm transition-all duration-200 outline-none 
+                  ${showAction
+                ? "border-orange-500 bg-white dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 shadow-[0_0_0_4px_rgba(139,92,246,0.1)]"
+                : "border-slate-200 bg-slate-50 text-slate-500 cursor-not-allowed"
+              }`}
           />
         </div>
         <div className="flex flex-col space-y-1">
@@ -42,7 +57,11 @@ const BasicInformition = () => {
             onChange={(e) => seteditPhone(e.target.value)}
             readOnly={!showAction}
             maxLength={10}
-            className="bg-blue-50 focus:shadow-md focus:outline focus:outline-orange-500 duration-300 rounded-xl text-sm px-4 py-3"
+            className={`h-11 w-full rounded-xl border pl-10 pr-4 text-sm transition-all duration-200 outline-none 
+                  ${showAction
+                ? "border-orange-500 bg-white dark:bg-slate-800/90 text-slate-800 dark:text-slate-200 shadow-[0_0_0_4px_rgba(139,92,246,0.1)]"
+                : "border-slate-200 bg-slate-50 text-slate-500 cursor-not-allowed"
+              }`}
           />
         </div>
         <div className="flex flex-col space-y-1 col-span-full">
@@ -52,10 +71,9 @@ const BasicInformition = () => {
           <input
             type="email"
             id="mail"
-            value={(showAction ? editMail : informition.mail) || ""}
-            onChange={(e) => seteditMail(e.target.value)}
-            readOnly={!showAction}
-            className="bg-blue-50 focus:shadow-md focus:outline focus:outline-orange-500 duration-300 rounded-xl text-sm px-4 py-3"
+            value={email}
+            readOnly
+            className="h-11 w-full rounded-xl border pl-10 pr-4 text-sm transition-all duration-200 outline-none border-slate-200 bg-slate-50 text-slate-500 cursor-not-allowed"
           />
         </div>
       </div>

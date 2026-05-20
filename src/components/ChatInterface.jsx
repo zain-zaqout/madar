@@ -27,8 +27,8 @@ const page = () => {
       setTimeout(() => {
         setisTypeing(true);
         
-      }, 2000);
-    }, 1000);
+      }, 2500);
+    }, 2000);
     const supportMessage = setTimeout(() => {
       
       

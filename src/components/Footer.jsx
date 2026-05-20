@@ -1,10 +1,11 @@
 "use client"
 import { AtSign, Globe, Mail, MapPin, Phone, Share2 } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const path = usePathname()
-  if (path === "/login" || path === "/subject_chat" || path === "/support_chat" || path === "/profile" || path === "/new-shipment" || path === "/offer" || path == "/new-shipment/succss") {
+  if (path === "/login" || path === "/support/chat" || path === "/profile" || path === "/new-shipment" || path === "/offer" || path == "/new-shipment/succss") {
     return null
   }
   return (
@@ -52,9 +53,9 @@ const Footer = () => {
           <h3 className="font-bold pb-2">الدعم والمساعدة</h3>
           <ul className="flex flex-col space-y-2">
             <li className="text-gray-500 font-semibold">
-              <p className="hover:text-orange-400 inline-block transition-colors duration-200 cursor-pointer">
+              <Link href="/support" className="hover:text-orange-400 inline-block transition-colors duration-200 cursor-pointer">
                 الدعم الفني
-              </p>
+              </Link>
             </li>
             <li className="text-gray-500 font-semibold">
               <p className="hover:text-orange-400 inline-block transition-colors duration-200 cursor-pointer">

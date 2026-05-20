@@ -1,23 +1,14 @@
 "use client";
 import { useAuth } from "@/contexts/AuthContext";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 const Page = () => {
-  const { Login, isLogin } = useAuth();
-
+  const { Login, isLogin, Loading } = useAuth();
   const router = useRouter();
 
-  useEffect(() => {
-    if (isLogin === "true") {
-      router.replace("/dashboard");
-    }
-  }, [isLogin, router]);
-
-  if (isLogin === "true") return null;
-
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
     Login();
   };
@@ -26,12 +17,12 @@ const Page = () => {
     <div className="bg-slate-50 h-screen flex justify-center items-center text-slate-900 px-4">
       <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 border border-slate-100">
         <h2 className="text-center text-3xl font-black text-slate-800">مدار | <span className="text-orange-500">دخول</span></h2>
-        
+
         <p className="text-center text-slate-500 text-sm mt-2 font-semibold">مرحباً بك في نظام الإمداد الذكي</p>
 
         <hr className="my-8 border-slate-100" />
 
-        <form onSubmit={handleFormSubmit} className="space-y-5">
+        <form className="space-y-5">
           <div>
             <input
               type="email"
@@ -63,10 +54,15 @@ const Page = () => {
           </div>
 
           <button
-            type="submit"
-            className="w-full p-4 mt-2 rounded-xl bg-orange-500 text-white font-black text-lg hover:bg-orange-600 active:scale-[0.98] transition-all shadow-lg shadow-orange-100 cursor-pointer"
+            onClick={handleFormSubmit}
+            disabled={Loading}
+            className="w-full flex justify-center p-4 mt-2 rounded-xl bg-orange-500 text-white font-black text-lg hover:bg-orange-600 active:scale-[0.98] transition-all shadow-lg shadow-orange-100 cursor-pointer"
           >
-            تسجيل الدخول
+            {Loading ? (
+              <><Loader2 className="animate-spin" size={30} /></>
+            ) : (
+              <> تسجيل الدخول</>
+            )}
           </button>
         </form>
 

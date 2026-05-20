@@ -15,21 +15,20 @@ const page = () => {
     showAction,
     setShowAction,
     cancelChange,
-    seteditMail,
     seteditName,
     seteditPhone,
     changeData,
     informition,
   } = useData();
-  const { Logout } = useAuth(); 
-  
+  const { Logout } = useAuth();
+
   useEffect(() => {
-    const local = localStorage.getItem("stay")
+    const local = localStorage.getItem("stay");
     if (local) {
-      setstay(Number(local))
+      setstay(Number(local));
     }
-  }, [])
-  
+  }, []);
+
   const userName = informition.userName;
   return (
     <div className="w-[70%] max-[640px]:w-[95%] m-auto mt-8">
@@ -44,7 +43,7 @@ const page = () => {
           </div>
           <div className="max-[750px]:text-center">
             <h2 className="text-[22px] leading-7 font-bold">{userName}</h2>
-            <p className="text-sm text-gray-600">user@madar.com</p>
+            <p className="text-sm text-gray-600">ahmed@madar.com</p>
           </div>
         </div>
         {!showAction ? (
@@ -53,7 +52,6 @@ const page = () => {
             onClick={() => {
               seteditName(informition.userName);
               seteditPhone(informition.phoneNumber);
-              seteditMail(informition.mail);
               setShowAction(true);
             }}
           >
@@ -128,8 +126,8 @@ const page = () => {
               />
             </div>
             <div className="flex items-center gap-3 pt-3">
-            <button
-              className="
+              <button
+                className="
       h-11 px-7 rounded-xl font-bold text-sm text-white
       bg-linear-to-r from-orange-500 to-orange-600
       hover:from-orange-600 hover:to-orange-700
@@ -140,26 +138,26 @@ const page = () => {
     "
                 onClick={() => {
                   setTimeout(() => {
-                    toast.success("تم تغيير كلمة المرور بنجاح!")
+                    toast.success("تم تغيير كلمة المرور بنجاح!");
                   }, 1500);
-                  setchangePassword(false)
+                  setchangePassword(false);
                 }}
-            >
-              حفظ التغييرات
-            </button>
+              >
+                حفظ التغييرات
+              </button>
 
-            <button
-              className="
+              <button
+                className="
       h-11 px-7 rounded-xl font-bold text-sm
       bg-white border-2 border-slate-200 text-slate-600
       hover:bg-slate-50 hover:border-slate-300 hover:text-slate-800
       active:scale-95 transition-all duration-300 cursor-pointer
     "
-              onClick={() => setchangePassword(false)}
-            >
-              إلغاء
-            </button>
-          </div>
+                onClick={() => setchangePassword(false)}
+              >
+                إلغاء
+              </button>
+            </div>
           </div>
         ) : (
           <div className="bg-blue-50 mt-6 flex max-[830px]:flex-col max-[830px]:items-start max-[830px]:space-y-2 items-center justify-between px-4 py-5 rounded-2xl">
@@ -213,29 +211,28 @@ const page = () => {
               </div>
             </div>
             <div className="hidden min-[425px]:block cursor-pointer">
-              <div className="bg-red-800/15 w-fit h-7 hover:bg-red-800/30 px-3 duration-200 flex items-center rounded-full">
+              <div className="bg-red-800/15 w-23 h-7 hover:bg-red-800/30 duration-200 flex justify-center items-center rounded-full">
                 <button
                   className="text-red-800 font-bold text-xs cursor-pointer"
                   disabled={isLoadingLogOut}
                   onClick={() => {
-                    setisLoadingLogOut(true)
+                    setisLoadingLogOut(true);
                     setTimeout(() => {
-                      Logout()
-                      setisLoading(false)
+                      Logout();
+                      setisLoading(false);
                     }, 2000);
                   }}
                 >
                   {isLoadingLogOut ? (
-                    
                     <Loader2 size={22} className="animate-spin" />
-                  ): (
-                      <>تسجيل الخروج</>
-                 )}
+                  ) : (
+                    <>تسجيل الخروج</>
+                  )}
                 </button>
               </div>
             </div>
             <div className="hidden max-[425px]:block cursor-pointer">
-              <div className="bg-red-800/15 w-fit h-7 cursor-pointer hover:bg-red-800/30 px-3 duration-200 flex items-center rounded-full">
+              <div className="bg-red-800/15 w-23 h-7 cursor-pointer hover:bg-red-800/30 duration-200 flex justify-center items-center rounded-full">
                 <button
                   className="text-red-800 font-bold text-xs cursor-pointer"
                   disabled={isLoading}
@@ -243,9 +240,9 @@ const page = () => {
                     setisLoading(true);
                     setTimeout(() => {
                       setstay(1);
-                      setisLoading(false)
-                      localStorage.setItem("stay", "1")
-                      toast.success("تم إنهاء الجلسة بنجاح!")
+                      setisLoading(false);
+                      localStorage.setItem("stay", "1");
+                      toast.success("تم إنهاء الجلسة بنجاح!");
                     }, 2000);
                   }}
                 >
@@ -261,7 +258,9 @@ const page = () => {
             </div>
           </div>
 
-          <div className={`${stay === 2 ? "hidden" : ""} border borde-slate-200 flex items-center justify-between max-[475px]:flex-col max-[475px]:space-y-3 max-[475px]:items-start rounded-2xl px-4 py-4`}>
+          <div
+            className={`${stay === 2 ? "hidden" : ""} border borde-slate-200 flex items-center justify-between max-[475px]:flex-col max-[475px]:space-y-3 max-[475px]:items-start rounded-2xl px-4 py-4`}
+          >
             <div className="flex items-center gap-3">
               <div className="bg-blue-100 relative w-11 h-11 rounded-full flex items-center justify-center">
                 <Smartphone className="text-orange-800" size={19.5} />
@@ -286,7 +285,7 @@ const page = () => {
               </div>
             </div>
 
-            <div className="bg-red-800/15 max-[425px]:hidden w-fit h-7 cursor-pointer hover:bg-red-800/30 px-3 duration-200 flex items-center rounded-full">
+            <div className="bg-red-800/15 max-[425px]:hidden h-7 cursor-pointer hover:bg-red-800/30 w-23 duration-200 flex justify-center items-center rounded-full">
               <button
                 className="text-red-800 font-bold text-xs cursor-pointer"
                 disabled={isLoading}
@@ -294,9 +293,9 @@ const page = () => {
                   setisLoading(true);
                   setTimeout(() => {
                     setstay(2);
-                    setisLoading(false)
-                    localStorage.setItem("stay", "2")
-                    toast.success("تم إنهاء الجلسة بنجاح!")
+                    setisLoading(false);
+                    localStorage.setItem("stay", "2");
+                    toast.success("تم إنهاء الجلسة بنجاح!");
                   }, 2000);
                 }}
               >
@@ -310,24 +309,23 @@ const page = () => {
               </button>
             </div>
             <div className="max-[425px]:block hidden cursor-pointer">
-              <div className="bg-red-800/15 w-fit h-7 hover:bg-red-800/30 px-3 duration-200 flex items-center rounded-full">
+              <div className="bg-red-800/15 w-25 h-7 hover:bg-red-800/30 duration-200 flex justify-center items-center rounded-full">
                 <button
                   className="text-red-800 font-bold text-xs cursor-pointer"
                   disabled={isLoadingLogOut}
                   onClick={() => {
-                    setisLoadingOut(true)
+                    setisLoadingLogOut(true);
                     setTimeout(() => {
-                      Logout()
-                      setisLoading(false)
+                      Logout();
+                      setisLoading(false);
                     }, 2000);
                   }}
                 >
                   {isLoadingLogOut ? (
-                    
                     <Loader2 size={22} className="animate-spin" />
-                  ): (
-                      <>تسجيل الخروج</>
-                 )}
+                  ) : (
+                    <>تسجيل الخروج</>
+                  )}
                 </button>
               </div>
             </div>

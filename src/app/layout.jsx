@@ -1,17 +1,16 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { AuthContext } from "@/contexts/AuthContext";
 import NavBar from "@/components/NavBar";
 import { MenuContext } from "@/contexts/MenuContext";
 import Footer from "@/components/Footer";
+import AuthWrapper from "@/components/AuthWrapper";
 import FooterBottom from "@/components/FooterBottom";
 import { ChangeData } from "@/contexts/UserContext";
 import { CostCalculationContext } from "@/contexts/AddShipmentContext";
 import { ShipmentsContext } from "@/contexts/ShipmentsContext";
 import { SupportChatContext } from "@/contexts/SupportChatContext";
 import { Toaster } from "sonner";
-import { SplashLoader } from "@/components/SplashLoader";
 
 const cairo = localFont({
   src: "../../public/assets/fonts/cairo/Cairo-VariableFont_slnt,wght.ttf",
@@ -27,16 +26,14 @@ const geist = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Madar | مدار",
-  description: "منصة مدار للخدمات اللوجستية والشحن",
+  description: "مدار هي منصة رقمية متكاملة لإدارة عمليات الشحن الدولي والمحلي، التخليص الجمركي، وتقديم الدعم الفني الذكي المباشر بحلول لوجستية مرنة وسريعة.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="ar"
@@ -45,7 +42,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans">
         <AuthContext>
-          <SplashLoader>
+          <AuthWrapper>
+
             <MenuContext>
               <ChangeData>
                 <ShipmentsContext>
@@ -66,15 +64,15 @@ export default function RootLayout({
                             {children}
                           </main>
                         </div>
-                        <Footer />
-                        <FooterBottom />
                       </div>
+                      <Footer />
+                      <FooterBottom />
                     </SupportChatContext>
                   </CostCalculationContext>
                 </ShipmentsContext>
               </ChangeData>
             </MenuContext>
-          </SplashLoader>
+          </AuthWrapper>
         </AuthContext>
       </body>
     </html>

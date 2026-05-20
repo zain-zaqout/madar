@@ -2,6 +2,7 @@
 import { createContext, useContext, useState } from "react";
 import { useShip } from "./ShipmentsContext";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export const Context = createContext();
 export const SupportChatContext = ({ children }) => {
@@ -9,36 +10,37 @@ export const SupportChatContext = ({ children }) => {
   const [SubjectChat, setSubjectChat] = useState("مشكلة في الجمركة");
   const [shipment, setshipment] = useState("استفسار عام");
   const [Trip, setTrip] = useState("");
-
+  
   const [InputValue, setInputValue] = useState("");
   const [Messages, setMessages] = useState([]);
   const [isTypeing, setisTypeing] = useState(false);
-
+  
   const [isLoading, setisLoading] = useState(false);
 
-  const router = useRouter();
+  const [isValid, setisValid] = useState(false)
 
   const startChat = () => {
     setisLoading(true);
     setTimeout(() => {
-      router.replace("/support_chat");
       if (shipment === "استفسار عام") {
         setTrip("...");
         setisLoading(false);
       } else {
-        supportFilter.filter((i: any) => {
+        supportFilter.filter((i) => {
           i.id === shipment ? setTrip(i.route) : i;
         });
-        setisLoading(false);
       }
-    }, 2000);
+      toast.success("تم فتح المحادثة بنجاح")
+      setisValid(true);
+      setisLoading(false);
+    }, 4000);
   };
   const houer = new Date().getHours();
-    const minutes = new Date().getMinutes();
-    const timeNow = `${houer}:${minutes}`;
+  const minutes = new Date().getMinutes();
+  const timeNow = `${houer}:${minutes}`;
   const handelaAdNewMessage = () => {
     if (InputValue.trim() === "") return
-    const useMessage = {text: InputValue, sender: "customer", time: timeNow}
+    const useMessage = { text: InputValue, sender: "customer", time: timeNow }
     setMessages((prev) => [...prev, useMessage])
     setInputValue("")
   }
@@ -61,7 +63,9 @@ export const SupportChatContext = ({ children }) => {
         isTypeing,
         setisTypeing,
         handelaAdNewMessage,
-        timeNow
+        timeNow,
+        isValid,
+        setisValid
       }}
     >
       {children}

@@ -60,7 +60,7 @@ const Man = () => {
               const isActive = path === item.href
               return (
 
-                <a href={item.href} key={index}>
+                <Link href={item.href} key={index}>
                 <li
                   onClick={() => setMenu(false)}
                   className={`flex items-center gap-4 p-3 rounded-xl cursor-pointer transition-all duration-200
@@ -73,7 +73,7 @@ const Man = () => {
                   </span>
                   <span className="text-md">{item.name}</span>
                 </li>
-              </a>
+              </Link>
               )
             })}
           </ul>

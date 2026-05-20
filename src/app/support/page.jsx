@@ -1,5 +1,6 @@
 "use client";
-import FAQ from "@/components/FAQ";
+import FAQ from "@/components/Faq";
+import { useShip } from "@/contexts/ShipmentsContext";
 import { useData } from "@/contexts/UserContext";
 import {
   AlignCenterVerticalIcon,
@@ -11,44 +12,17 @@ import {
   Cpu,
   Sparkle,
 } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const page = () => {
   const { informition } = useData();
-  const userName = informition.userName;
-  const shipments = "03";
+  const { shipments } = useShip();
+  const userName = informition.userName.split(" ")[0];
+  const shipmentsCount = shipments.length;
 
-  const table = [
-    {
-      id: "MD-88291",
-      route: "شنغهاي ← الرياض",
-      status: "قيد النقل",
-      color: "text-orange-600",
-      dot: "bg-orange-600",
-    },
-    {
-      id: "MD-77201",
-      route: "لندن ← دبي",
-      status: "معلقة (جمارك)",
-      color: "text-red-600",
-      dot: "bg-red-600",
-    },
-    {
-      id: "MD-11932",
-      route: "نيويورك ← جدة",
-      status: "تم التوصيل",
-      color: "text-green-600",
-      dot: "bg-green-600",
-    },
-    {
-      id: "MD-44092",
-      route: "طوكيو ← الدمام",
-      status: "في المستودع",
-      color: "text-blue-600",
-      dot: "bg-blue-600",
-    },
-  ];
+  const router = useRouter();
+
   return (
     <div className="my-10">
       <div className="w-[90%] m-auto">
@@ -98,7 +72,7 @@ const page = () => {
 
                 <div>
                   <span className="text-sm text-gray-500 font-semibold">
-                    عدد الشحنات: {shipments}
+                    عدد الشحنات: {shipmentsCount}
                   </span>
                 </div>
               </div>
@@ -116,7 +90,7 @@ const page = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
-                    {table.map((row, index) => (
+                    {shipments.slice(0, 4).map((row, index) => (
                       <tr
                         key={index}
                         className="group hover:bg-slate-50/50 transition-colors"
@@ -138,7 +112,7 @@ const page = () => {
                           </div>
                         </td>
                         <td className="py-6 text-slate-500 font-semibold text-[14px] whitespace-nowrap">
-                          <span className="text-orange-500 hover:text-orange-600 cursor-pointer transition-colors duration-100">
+                          <span onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="text-orange-500 hover:text-orange-600 cursor-pointer transition-colors duration-100">
                             تتبع الشحنة
                           </span>
                         </td>
@@ -161,7 +135,10 @@ const page = () => {
                   تسجيل فوري لحالات التلف أو التأخير الحرجة التي تتطلب تدخلا
                   فورياً.
                 </p>
-                <button onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="w-full cursor-pointer hover:bg-red-50 transition-colors duration-300 py-3 text-red-600 mt-4 rounded-full border font-semibold border-red-100">
+                <button
+                  onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")}
+                  className="w-full cursor-pointer hover:bg-red-50 transition-colors duration-300 py-3 text-red-600 mt-4 rounded-full border font-semibold border-red-100"
+                >
                   بدء محادثة
                 </button>
               </div>
@@ -177,7 +154,10 @@ const page = () => {
                   الوصول المركزي للفواتير,بوالص الشحن, وتقارير التخليص الجمركي
                   المعتمدة
                 </p>
-                <button onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="w-full cursor-pointer hover:bg-slate-100/80 transition-colors duration-300 py-3 text-slate-600 mt-4 rounded-full border font-semibold border-red-100">
+                <button
+                  onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")}
+                  className="w-full cursor-pointer hover:bg-slate-100/80 transition-colors duration-300 py-3 text-slate-600 mt-4 rounded-full border font-semibold border-red-100"
+                >
                   عرض الأرشيف
                 </button>
               </div>
@@ -209,7 +189,10 @@ const page = () => {
                 للإستفسارات المعقدة المتعلقة بالتخليص الجمركي وتخطيط سلاسل
                 الإمداد العالمية.
               </p>
-              <button onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="max-w-85 w-full cursor-pointer bg-orange-500 hover:bg-orange-600 transition-colors duration-300 py-3 text-white mt-6 rounded-full border font-bold border-red-100">
+              <button
+                onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")}
+                className="max-w-85 w-full cursor-pointer bg-orange-500 hover:bg-orange-600 transition-colors duration-300 py-3 text-white mt-6 rounded-full border font-bold border-red-100"
+              >
                 بدء الجلسة
               </button>
             </div>
@@ -232,11 +215,12 @@ const page = () => {
                 حل مشاكل الحساب, الربط عبر API, وصعوبات استخدام منصة مدار
                 التقنية.
               </p>
-              <Link href="/subject_chat">
-                <button className="w-full max-w-85 cursor-pointer bg-transparent hover:bg-slate-100/80 transition-colors duration-300 py-3 text-slate-600 mt-6 rounded-full border font-bold border-slate-200">
-                  فتح تذكرة فنية
-                </button>
-              </Link>
+              <button
+                onClick={() => router.push("/support/chat")}
+                className="w-full max-w-85 cursor-pointer bg-transparent hover:bg-slate-100/80 transition-colors duration-300 py-3 text-slate-600 mt-6 rounded-full border font-bold border-slate-200"
+              >
+                فتح تذكرة فنية
+              </button>
             </div>
 
             <div className="bg-white border border-slate-200 rounded-[30px] px-5 py-6">
@@ -257,7 +241,10 @@ const page = () => {
                 إجابات فورية وآلية على الأسئلة المتكررة وتتبع حالة الشحنات
                 البسيطة.
               </p>
-              <button onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="w-full max-w-85 cursor-pointer bg-slate-600 hover:bg-slate-700 transition-colors duration-300 py-3 text-white mt-6 rounded-full border font-bold border-red-100">
+              <button
+                onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")}
+                className="w-full max-w-85 cursor-pointer bg-slate-600 hover:bg-slate-700 transition-colors duration-300 py-3 text-white mt-6 rounded-full border font-bold border-red-100"
+              >
                 بدء المحادثة
               </button>
             </div>

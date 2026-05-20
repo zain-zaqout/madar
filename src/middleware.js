@@ -1,27 +1,33 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-    const token = request.cookies.get('isLoggedIn'); 
-    const { pathname } = request.nextUrl;
+  const isLoggedIn = request.cookies.get('isLoggedIn');
+  const { pathname } = request.nextUrl;
 
-    if (pathname.startsWith('/_next') || pathname.includes('.')) {
-        return NextResponse.next();
-    }
+  const authRoutes = ["/login", "/"];
 
-    const privatePaths = ['/dashboard', '/new-shipment', '/offer', '/profile', '/support', '/succss', '/subject_chat', '/support_chat'];
-    const isPrivate = privatePaths.some(path => pathname.startsWith(path));
+  const protectedRoutes = [
+    "/dashboard",
+    "/new-shipment",
+    "/offer",
+    "/profile",
+    "/support/chat",
+    "/support"
+  ];
 
-    if (!token && isPrivate) {
-        return NextResponse.redirect(new URL('/', request.url));
-    }
+  if (isLoggedIn && authRoutes.includes(pathname)) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
 
-    if (token && pathname === "/login") {
-        return NextResponse.redirect(new URL('/dashboard', request.url));
-    }
+  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
+  
+  if (!isLoggedIn && isProtectedRoute) {
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
 
-    return NextResponse.next();
+  return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

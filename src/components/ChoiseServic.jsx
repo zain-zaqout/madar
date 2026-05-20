@@ -4,7 +4,7 @@ import { Truck, Zap, DollarSign, Route, Ship } from "lucide-react";
 const ChoiseServic = () => {
   const { servic, setServic } = useCalc();
   return (
-    <section className="bg-white rounded-2xl shadow-md col-span-8 max-[1100px]:col-span-full px-6 py-5">
+    <section className="bg-white rounded-2xl shadow-md h-fit col-span-8 max-[1100px]:col-span-full px-6 py-5">
       <div className="flex items-center gap-3">
         <Truck size={22} className="text-orange-800" />
         <h3 className="text-xl font-bold">إختر نوع الخدمة</h3>

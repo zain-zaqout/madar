@@ -1,5 +1,3 @@
-"use client";
-
 const TypingIndicator = () => {
   return (
     <div className="flex justify-start items-center gap-2 px-1 animate-in fade-in slide-in-from-bottom-1 duration-300">

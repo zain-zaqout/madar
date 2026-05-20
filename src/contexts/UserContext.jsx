@@ -6,11 +6,9 @@ export const ChangeData = ({ children }) => {
   const [showAction, setShowAction] = useState(false);
   const [editName, seteditName] = useState("Ahmed");
   const [editPhone, seteditPhone] = useState("0599999999");
-  const [editMail, seteditMail] = useState("user@madar.com");
   const initialState = {
     userName: "Ahmed",
-    phoneNumber: "0599999999",
-    mail: "user@madar.com",
+    phoneNumber: "0599999999"
   };
 
   const reducer = (state, action) => {
@@ -19,8 +17,6 @@ export const ChangeData = ({ children }) => {
         return { ...state, userName: action.val };
       case "PHONE_NUMBER":
         return { ...state, phoneNumber: action.val };
-      case "MAIL":
-        return { ...state, mail: action.val };
       default:
         return state;
     }
@@ -30,25 +26,20 @@ export const ChangeData = ({ children }) => {
   const changeData = () => {
     dispatch({ type: "USER_NAME", val: editName });
     dispatch({ type: "PHONE_NUMBER", val: editPhone });
-    dispatch({ type: "MAIL", val: editMail });
-  localStorage.setItem("name", editName)
+  localStorage.setItem("userName", editName)
     localStorage.setItem("phone", editPhone)
-  localStorage.setItem("email", editMail)
     setShowAction(false);
   };
   
   useEffect(() => {
-    const name = localStorage.getItem("name")
+    const name = localStorage.getItem("userName")
     const phone = localStorage.getItem("phone")
-    const mail = localStorage.getItem("email")
     if (name) {
       
       dispatch({type: "USER_NAME", val: name})
       dispatch({type: "PHONE_NUMBER", val: phone})
-      dispatch({ type: "MAIL", val: mail })
       seteditName(name)
       seteditPhone(phone)
-      seteditMail(mail)
     }
   }, [])
   
@@ -56,7 +47,6 @@ export const ChangeData = ({ children }) => {
   const cancelChange = () => {
     seteditName(informition.userName)
     seteditPhone(informition.phoneNumber)
-    seteditMail(informition.mail)
     setShowAction(false)
   }
 
@@ -65,13 +55,11 @@ export const ChangeData = ({ children }) => {
       value={{
         setShowAction,
         editName,
-        editMail,
         changeData,
         seteditName,
         showAction,
         informition,
         dispatch,
-        seteditMail,
         seteditPhone,
         editPhone,
         cancelChange

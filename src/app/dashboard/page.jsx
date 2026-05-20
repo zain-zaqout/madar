@@ -15,8 +15,8 @@ import { toast } from "sonner";
 const page = () => {
 
   const [searchTrem, setSearchTrem] = useState("")
-
   const { lastUpdate, shipments } = useShip()
+
 
   const cards = [
     {
@@ -49,11 +49,8 @@ const page = () => {
     },
   ];
 
-  
-
   const filter = shipments.filter((item) => {
     const matchsSearch = item.id.toLowerCase().includes(searchTrem.toLowerCase())
-
     return matchsSearch
   })
 
@@ -89,7 +86,7 @@ const page = () => {
                   </div>
                   <div className="absolute left-0 top-4">
                     {" "}
-                    <span className="bg-gray-100 text-gray-500 rounded-full text-[10px] px-2 py-0.5 font-bold uppercase">
+                    <span className="bg-gray-100 text-gray-500 rounded-full text-[10px] ml-2 px-2 py-0.5 font-bold uppercase">
                       {item.ago}
                     </span>
                   </div>
@@ -97,7 +94,6 @@ const page = () => {
               ))}
             </div>
           </section>
-
           <div className="col-span-3 max-[1000px]:col-span-4 max-[750px]:col-span-full">
             <article className="bg-white rounded-[17px] px-7 pb-8">
               <div className="flex items-center gap-2.5 py-7">
@@ -181,11 +177,13 @@ const page = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
-                {filter.map((row, index) => (
-                  <tr
+                {filter.length > 0 ? (
+
+                  filter.map((row, index) => (
+                    <tr
                     key={index}
                     className="group hover:bg-slate-50/50 transition-colors"
-                  >
+                    >
                     <td className="py-6 text-slate-800 font-bold text-[15px] whitespace-nowrap">
                       {row.id}
                     </td>
@@ -206,13 +204,24 @@ const page = () => {
                       {row.date}
                     </td>
                   </tr>
-                ))}
+                ))
+                ) : (
+                      <tr>
+      <td colSpan={4} className="py-20 text-center">
+        <div className="flex flex-col items-center justify-center">
+          <Search size={40} className="text-slate-200 mb-3" />
+          <p className="text-slate-500 font-bold text-lg">لا توجد نتائج مطابقة</p>
+          <p className="text-slate-400 text-sm">تأكد من كتابة رقم الشحنة بشكل صحيح</p>
+        </div>
+      </td>
+    </tr>
+              )}
               </tbody>
             </table>
           </div>
 
           <div className={`${searchTrem !== ""? "hidden" : "block"} mt-8 text-center`}>
-            <button className="text-orange-600 font-bold text-sm hover:underline cursor-pointer">
+            <button onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="text-orange-600 font-bold text-sm hover:underline cursor-pointer">
               مشاهدة جميع الشحنات (1,284)
             </button>
           </div>

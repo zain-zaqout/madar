@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/app/loading.jsx"  ],
+, "src/app/loading.jsx", "src/app/dashboard/page.jsx", "src/app/login/page.jsx", "src/app/new-shipment/page.jsx", "src/app/new-shipment/succss/page.jsx", "src/app/offer/page.jsx", "src/app/profile/page.jsx", "src/app/subject_chat/page.jsx", "src/app/support/page.jsx", "src/app/support_chat/page.jsx", "src/app/layout.jsx", "src/app/page.jsx", "src/components/ui/accordion.jsx", "src/components/BasicInformition.jsx", "src/components/Bill.jsx", "src/components/ChoiseServic.jsx", "src/components/Comments.jsx", "src/components/CompanyStats.jsx", "src/components/ContentAndValue.jsx", "src/components/Faq.jsx", "src/components/Footer.jsx", "src/components/FooterBottom.jsx", "src/components/FullPageLoader.jsx", "src/components/GetInformition.jsx", "src/components/Hero.jsx", "src/components/Menu.jsx", "src/components/NavBar.jsx", "src/components/SendInformition.jsx", "src/components/Serevic.jsx", "src/components/ShipmentInformition.jsx", "src/components/TypingIndicator.jsx", "src/components/WhyUs.jsx", "src/contexts/AddShipmentContext.jsx", "src/contexts/AuthContext.jsx", "src/contexts/MenuContext.jsx", "src/contexts/ShipmentsContext.jsx", "src/contexts/SupportChatContext.jsx", "src/contexts/UserContext.jsx"  ],
   "exclude": ["node_modules"]
 }

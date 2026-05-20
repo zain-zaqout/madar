@@ -19,14 +19,17 @@ export const CostCalculationContext = ({ children }) => {
   const [Bill, setBill] = useState(0.0);
   const [Taks, setTaks] = useState(0.0);
   const [Total, setTotal] = useState(0.0);
+  const [servic, setServic] = useState(1);
 
   const [typeShipment, settypeShipment] = useState("بضائع عامة");
 
-  const router = useRouter();
+    const [isAdditionSuccessful, setIsAdditionSuccessful] = useState(false)
+    
+    const { setShipment, shipments } = useShip();
+    const router = useRouter();
 
   const [isLoading, setisLoading] = useState(false);
 
-  const [servic, setServic] = useState(1);
   const initialState = {
     nameOfSend: "",
     cityOfSend: "الرياض",
@@ -194,10 +197,10 @@ export const CostCalculationContext = ({ children }) => {
     setShipment(newShipments);
       
     localStorage.setItem("shipments", JSON.stringify(newShipments))
+    setIsAdditionSuccessful(true)
     toast.success(`تم اضافة الشحنة رقم ${ship.id} بنجاح!`)
   };
 
-  const { setShipment, shipments } = useShip();
 
   const expetTime =
     servic === 1
@@ -241,6 +244,8 @@ export const CostCalculationContext = ({ children }) => {
         isLoading,
         setisLoading,
         expetTime,
+        setIsAdditionSuccessful,
+        isAdditionSuccessful,
       }}
     >
       {children}
