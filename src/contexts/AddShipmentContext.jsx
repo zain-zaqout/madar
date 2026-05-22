@@ -23,10 +23,10 @@ export const CostCalculationContext = ({ children }) => {
 
   const [typeShipment, settypeShipment] = useState("بضائع عامة");
 
-    const [isAdditionSuccessful, setIsAdditionSuccessful] = useState(false)
-    
-    const { setShipment, shipments } = useShip();
-    const router = useRouter();
+  const [isAdditionSuccessful, setIsAdditionSuccessful] = useState(false)
+
+  const { setShipment, shipments } = useShip();
+  const router = useRouter();
 
   const [isLoading, setisLoading] = useState(false);
 
@@ -165,24 +165,24 @@ export const CostCalculationContext = ({ children }) => {
   });
 
   const addShip = () => {
-    router.replace("/new-shipment/succss");
+    router.replace("/add-shipment/succss");
     setisLoading(false);
 
     const formatDate = () => {
-  const now = new Date();
-  
-  const options = { day: '2-digit', month: 'short', year: 'numeric' };
-  
-  const formatter = new Intl.DateTimeFormat('en-GB', options);
-  const parts = formatter.formatToParts(now);
-  
-  const day = parts.find(p => p.type === 'day').value;
-  const month = parts.find(p => p.type === 'month').value;
-  const year = parts.find(p => p.type === 'year').value;
+      const now = new Date();
 
-  return `${day} ${month}, ${year}`;
+      const options = { day: '2-digit', month: 'short', year: 'numeric' };
+
+      const formatter = new Intl.DateTimeFormat('en-GB', options);
+      const parts = formatter.formatToParts(now);
+
+      const day = parts.find(p => p.type === 'day').value;
+      const month = parts.find(p => p.type === 'month').value;
+      const year = parts.find(p => p.type === 'year').value;
+
+      return `${day} ${month}, ${year}`;
     };
-    
+
     const shipmentDate = formatDate()
 
     const useNewShip = {
@@ -195,7 +195,7 @@ export const CostCalculationContext = ({ children }) => {
     };
     const newShipments = [useNewShip, ...shipments]
     setShipment(newShipments);
-      
+
     localStorage.setItem("shipments", JSON.stringify(newShipments))
     setIsAdditionSuccessful(true)
     toast.success(`تم اضافة الشحنة رقم ${ship.id} بنجاح!`)

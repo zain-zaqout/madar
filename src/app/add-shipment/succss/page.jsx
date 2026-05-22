@@ -13,7 +13,7 @@ const ShipmentSuccessPage = () => {
 
   useEffect(() => {
     if (!isAdditionSuccessful) {
-      router.replace("/new-shipment")
+      router.replace("/add-shipment")
     } else {
       setIsVerifying(false)
     }
@@ -159,7 +159,7 @@ const ShipmentSuccessPage = () => {
           مشاركة عبر واتساب
         </button>
         <button onClick={() => {
-          window.location.href = "/new-shipment"
+          window.location.href = "/add-shipment"
         }}
           className="flex-1 cursor-pointer min-w-[200px] py-4 bg-white text-orange-600 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-orange-50 transition-all border border-orange-100">
           <Plus size={20} />

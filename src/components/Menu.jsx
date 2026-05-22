@@ -9,17 +9,17 @@ const Man = () => {
   const { isLogin } = useAuth()
 
   const isNotLogged = [
-    { name: "الرئيسية", icon: <Home size={20} />, href:"#hero" },
-    { name: "الخدمات", icon: <Briefcase size={20} />, href:"#servic" },
-    { name: "من نحن", icon: <Users size={20} />, href:"#why_us" },
-    { name: "الإحصائيات", icon: <BarChart3 size={20} />, href:"#company_stats" },
-    { name: "التقييمات", icon: <Star size={20} />, href:"#reviews" },
+    { name: "الرئيسية", icon: <Home size={20} />, href: "#hero" },
+    { name: "الخدمات", icon: <Briefcase size={20} />, href: "#servic" },
+    { name: "من نحن", icon: <Users size={20} />, href: "#why_us" },
+    { name: "الإحصائيات", icon: <BarChart3 size={20} />, href: "#company_stats" },
+    { name: "التقييمات", icon: <Star size={20} />, href: "#reviews" },
   ]
   const isLoggedMenu = [
-    { name: "لوحة التحكم", icon: <Briefcase size={20} />, href:"/dashboard" },
-    { name: "إضافة شحنة", icon: <Users size={20} />, href:"/new-shipment" },
-    { name: "الدعم الفني", icon: <BarChart3 size={20} />, href:"/support" },
-    { name: "العروض", icon: <Gift size={20} />, href:"/offer" }
+    { name: "لوحة التحكم", icon: <Briefcase size={20} />, href: "/dashboard" },
+    { name: "إضافة شحنة", icon: <Users size={20} />, href: "/add-shipment" },
+    { name: "الدعم الفني", icon: <BarChart3 size={20} />, href: "/support" },
+    { name: "العروض", icon: <Gift size={20} />, href: "/offer" }
   ];
 
   const path = usePathname()
@@ -27,7 +27,7 @@ const Man = () => {
   return (
     <>
       {Menuu && (
-        <div 
+        <div
           className={`${Menuu ? "fixed inset-0 h-screen bg-slate-900/60 backdrop-blur-sm z-998 duration-300" : "hidden"}`}
           onClick={() => setMenu(false)}
         />
@@ -46,11 +46,11 @@ const Man = () => {
             </div>
             <span className="font-black text-xl text-slate-900 tracking-tighter">مدار</span>
           </div>
-          <button 
+          <button
             onClick={() => setMenu(false)}
             className="p-2 group hover:bg-red-100 cursor-pointer rounded-full transition-colors text-slate-400 hover:text-red-500"
           >
-            <X size={24} className="group-hover:text-red-500 group-hover:rotate-180 transition duration-150"/>
+            <X size={24} className="group-hover:text-red-500 group-hover:rotate-180 transition duration-150" />
           </button>
         </div>
 
@@ -61,19 +61,19 @@ const Man = () => {
               return (
 
                 <Link href={item.href} key={index}>
-                <li
-                  onClick={() => setMenu(false)}
-                  className={`flex items-center gap-4 p-3 rounded-xl cursor-pointer transition-all duration-200
+                  <li
+                    onClick={() => setMenu(false)}
+                    className={`flex items-center gap-4 p-3 rounded-xl cursor-pointer transition-all duration-200
                   ${isActive
-                      ? "bg-orange-50 text-orange-600 font-bold"
-                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}
-                >
-                  <span className={isActive ? "text-orange-600" : "text-slate-400"}>
-                    {item.icon}
-                  </span>
-                  <span className="text-md">{item.name}</span>
-                </li>
-              </Link>
+                        ? "bg-orange-50 text-orange-600 font-bold"
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}
+                  >
+                    <span className={isActive ? "text-orange-600" : "text-slate-400"}>
+                      {item.icon}
+                    </span>
+                    <span className="text-md">{item.name}</span>
+                  </li>
+                </Link>
               )
             })}
           </ul>

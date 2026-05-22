@@ -23,7 +23,7 @@ const NavBar = () => {
 
   const privateLinks = [
     { id: 2, lable: "لوحة التحكم", href: "/dashboard" },
-    { id: 3, lable: "اضافة شحنة", href: "/new-shipment" },
+    { id: 3, lable: "اضافة شحنة", href: "/add-shipment" },
     { id: 4, lable: "الدعم الفني", href: "/support" },
     { id: 5, lable: "العروض", href: "/offer" },
   ];
@@ -31,7 +31,7 @@ const NavBar = () => {
   const { isLogin } = useAuth();
   const { setMenu } = useMenu();
 
-  const linksToRender = isLogin !== "true" ?  publicLinks : privateLinks;
+  const linksToRender = isLogin !== "true" ? publicLinks : privateLinks;
 
   return (
     <div className="h-17 w-full z-50 flex bg-white/70 border-b border-gray-400/30 shadow sticky top-0 backdrop-blur-sm">
@@ -71,13 +71,13 @@ const NavBar = () => {
         </div>
         <div className="flex items-center gap-3">
           <Link href="/profile">
-          <User2 size={18.5} className={`${isLogin === "true" ? "block" : "hidden"} text-gray-500 cursor-pointer hover:text-orange-600 transition-colors duration-150`}/>
+            <User2 size={18.5} className={`${isLogin === "true" ? "block" : "hidden"} text-gray-500 cursor-pointer hover:text-orange-600 transition-colors duration-150`} />
           </Link>
           <button onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="font-semibold text-slate-500 cursor-pointer hover:text-orange-600 transition duration-150">
             EN
           </button>
           <Link
-            href={isLogin === "true" ? "/new-shipment" : "/login"}
+            href={isLogin === "true" ? "/add-shipment" : "/login"}
             className={`bg-orange-500 hover:bg-orange-600 shadow-md shadow-orange-200 flex justify-center transition-all duration-150 cursor-pointer py-1 w-28 text-slate-50  font-semibold rounded-full`}
           >
             {isLogin == "true" ? "اضافة شحنة" : "انضم الينا"}

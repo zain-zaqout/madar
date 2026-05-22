@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const path = usePathname()
-  if (path === "/login" || path === "/support/chat" || path === "/profile" || path === "/new-shipment" || path === "/offer" || path == "/new-shipment/succss") {
+  if (path === "/login" || path === "/support/chat" || path === "/profile" || path === "/add-shipment" || path === "/offer" || path == "/add-shipment/succss") {
     return null
   }
   return (
@@ -19,8 +19,8 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-3">
             <Share2 size={19} className="text-gray-400" />
-            <AtSign className="text-gray-400"/>
-            <Globe size={20.5} className="text-gray-400"/>
+            <AtSign className="text-gray-400" />
+            <Globe size={20.5} className="text-gray-400" />
           </div>
         </div>
         <div>
