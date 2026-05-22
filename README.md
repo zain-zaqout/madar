@@ -13,7 +13,7 @@ A sleek, responsive landing page for the Madar project built with **Next.js (App
 
 ## 🌐 Live Demo
 
-**👉 [Madar Landing Page - Live Demo](#)** *(replace `#` with actual URL when deployed)*
+**👉 [Madar - Live Demo](https://madar-express.vercel.app)**
 
 ---
 
@@ -62,7 +62,7 @@ src/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/madar-landing-page.git
+git clone https://github.com/zain-zaqout/madar.git
 cd madar-landing-page
 ```
 
@@ -114,6 +114,6 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 Developed with ❤️ by **Zain**
 
 - GitHub: [@zain-zaqout](https://github.com/zain-zaqout)
-- Email: zain@example.com *(replace with actual email)*
+- Email: [zainweb.code@gmail.com](mailto:zainweb.code@gmail.com)
 
 ---
