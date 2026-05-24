@@ -27,23 +27,23 @@ const SubjectSelection = () => {
 
             <main className="flex items-center justify-center min-h-[calc(100vh-60px)] py-6 px-4 bg-slate-50/50">
 
-                <div className="bg-white w-full max-w-sm rounded-3xl px-5 sm:px-6 py-6 shadow-sm border border-slate-100 text-right">         
-                     <div>
-                    <div className="flex justify-center">
-                        <div className="w-14 h-14 rounded-full flex items-center justify-center bg-orange-200/55 shrink-0">
-                            <MessageSquare size={24} className="text-orange-700" />
+                <div className="bg-white w-full max-w-sm rounded-3xl px-5 sm:px-6 py-6 shadow-sm border border-slate-100 text-right">
+                    <div>
+                        <div className="flex justify-center">
+                            <div className="w-14 h-14 rounded-full flex items-center justify-center bg-orange-200/55 shrink-0">
+                                <MessageSquare size={24} className="text-orange-700" />
+                            </div>
                         </div>
+
+                        <h2 className="font-bold text-2xl sm:text-[26px] pt-3 text-center sm:leading-13">
+                            كيف يمكننا مساعدتك اليوم؟
+                        </h2>
+
+                        <p className="text-gray-600 font-semibold text-sm sm:text-[15px] text-center mt-2 leading-relaxed">
+                            فريق الدعم الفني في مدار متاح لمساعدتك في أي استفسار يخص شحناتك
+                            أو التخليص الجمركي.
+                        </p>
                     </div>
-
-                    <h2 className="font-bold text-2xl sm:text-[26px] pt-3 text-center sm:leading-13">
-                        كيف يمكننا مساعدتك اليوم؟
-                    </h2>
-
-                    <p className="text-gray-600 font-semibold text-sm sm:text-[15px] text-center mt-2 leading-relaxed">
-                        فريق الدعم الفني في مدار متاح لمساعدتك في أي استفسار يخص شحناتك
-                        أو التخليص الجمركي.
-                    </p>
-                </div>
 
                     <div className="flex flex-col space-y-5 pt-5">
                         <div className="flex flex-col space-y-2">
@@ -99,7 +99,7 @@ const SubjectSelection = () => {
                         </p>
                     </div>
 
-                    =          <button
+                    <button
                         disabled={isLoading}
                         className="text-white mt-5 font-bold flex justify-center items-center gap-2 w-full rounded-xl cursor-pointer hover:bg-orange-700 disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors duration-200 py-3 bg-orange-600 shadow-md shadow-orange-200"
                         onClick={startChat}

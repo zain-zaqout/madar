@@ -9,7 +9,7 @@ import {
   Search,
   Route,
 } from "lucide-react";
-import {  useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 const page = () => {
@@ -58,7 +58,7 @@ const page = () => {
     <div>
       <div className="w-[90%] m-auto my-10">
         <div className="grid grid-cols-10 max-[750px]:grid-cols-1 gap-6 max-[750px]:gap-0 max-[750px]:space-y-4">
-         <section className="bg-white px-7 py-8 col-span-7 max-[1000px]:col-span-6 max-[750px]:col-span-full w-full rounded-2xl">
+          <section className="bg-white px-7 py-8 col-span-7 max-[1000px]:col-span-6 max-[750px]:col-span-full w-full rounded-2xl">
             <div>
               <h3 className="font-black text-2xl">آخر التحديثات</h3>
               <p className="text-gray-600 font-bold text-sm">
@@ -139,7 +139,7 @@ const page = () => {
             </article>
           </div>
 
-          
+
         </div>
         <section className="bg-white min-h-[500px] w-full px-7 py-8 rounded-[25px] mt-5 shadow-sm border border-slate-50">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-4">
@@ -164,63 +164,63 @@ const page = () => {
             </div>
           </div>
 
-          <div className="w-full overflow-x-auto scrollbar-hide select-none">
-            <table className="w-full text-right border-collapse min-w-[700px]">
-              <thead className="">
-                <tr className="text-slate-400 text-[13px] font-bold border-b border-slate-50">
-                  <th className="pb-4 whitespace-nowrap">رقم الشحنة (#MD)</th>
-                  <th className="pb-4 whitespace-nowrap">المسار</th>
-                  <th className="pb-4 whitespace-nowrap px-4">الحالة</th>
-                  <th className="pb-4 whitespace-nowrap">
-                    الوقت المتوقع (ETA)
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-50">
-                {filter.length > 0 ? (
-
-                  filter.map((row, index) => (
-                    <tr
-                    key={index}
-                    className="group hover:bg-slate-50/50 transition-colors"
-                    >
-                    <td className="py-6 text-slate-800 font-bold text-[15px] whitespace-nowrap">
-                      {row.id}
-                    </td>
-                    <td className="py-6 text-slate-600 font-medium text-[14px] whitespace-nowrap">
-                      {row.route}
-                    </td>
-                    <td className="py-6 px-4">
-                      <div
-                        className={`flex items-center gap-2 font-bold text-[14px] whitespace-nowrap ${row.color}`}
-                      >
-                        <span
-                          className={`w-2 h-2 rounded-full ${row.dot}`}
-                        ></span>
-                        {row.status}
-                      </div>
-                    </td>
-                    <td className="py-6 text-slate-500 font-semibold text-[14px] whitespace-nowrap">
-                      {row.date}
-                    </td>
+          {filter.length > 0 ? (
+            <div className="w-full overflow-x-auto scrollbar-hide select-none">
+              <table className="w-full text-right border-collapse min-w-[700px]">
+                <thead>
+                  <tr className="text-slate-400 text-[13px] font-bold border-b border-slate-50">
+                    <th className="pb-4 whitespace-nowrap">رقم الشحنة (#MD)</th>
+                    <th className="pb-4 whitespace-nowrap">المسار</th>
+                    <th className="pb-4 whitespace-nowrap px-4">الحالة</th>
+                    <th className="pb-4 whitespace-nowrap">
+                      الوقت المتوقع (ETA)
+                    </th>
                   </tr>
-                ))
-                ) : (
-                      <tr>
-      <td colSpan={4} className="py-20 text-center">
-        <div className="flex flex-col items-center justify-center">
-          <Search size={40} className="text-slate-200 mb-3" />
-          <p className="text-slate-500 font-bold text-lg">لا توجد نتائج مطابقة</p>
-          <p className="text-slate-400 text-sm">تأكد من كتابة رقم الشحنة بشكل صحيح</p>
-        </div>
-      </td>
-    </tr>
-              )}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-slate-50">
 
-          <div className={`${searchTrem !== ""? "hidden" : "block"} mt-8 text-center`}>
+                  {filter.map((row, index) => (
+                    <tr
+                      key={index}
+                      className="group hover:bg-slate-50/50 transition-colors"
+                    >
+                      <td className="py-6 text-slate-800 font-bold text-[15px] whitespace-nowrap">
+                        {row.id}
+                      </td>
+                      <td className="py-6 text-slate-600 font-medium text-[14px] whitespace-nowrap">
+                        {row.route}
+                      </td>
+                      <td className="py-6 px-4">
+                        <div
+                          className={`flex items-center gap-2 font-bold text-[14px] whitespace-nowrap ${row.color}`}
+                        >
+                          <span
+                            className={`w-2 h-2 rounded-full ${row.dot}`}
+                          ></span>
+                          {row.status}
+                        </div>
+                      </td>
+                      <td className="py-6 text-slate-500 font-semibold text-[14px] whitespace-nowrap">
+                        {row.date}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+          ) : (
+            <div className="py-20">
+              <div className="flex flex-col items-center justify-center">
+                <Search size={40} className="text-slate-200 mb-3" />
+                <p className="text-slate-500 font-bold text-lg">لا توجد نتائج مطابقة</p>
+                <p className="text-slate-400 text-sm">تأكد من كتابة رقم الشحنة بشكل صحيح</p>
+              </div>
+            </div>
+          )}
+
+
+          <div className={`${searchTrem !== "" ? "hidden" : "block"} mt-8 text-center`}>
             <button onClick={() => toast.info("هذه الميزة غير متوفرة حاليا!")} className="text-orange-600 font-bold text-sm hover:underline cursor-pointer">
               مشاهدة جميع الشحنات (1,284)
             </button>

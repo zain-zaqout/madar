@@ -26,16 +26,15 @@ const page = () => {
       ]);
       setTimeout(() => {
         setisTypeing(true);
-        
+
       }, 2500);
     }, 2000);
     const supportMessage = setTimeout(() => {
-      
-      
+
       const useMessage = {
         text:
           shipment === "استفسار عام" &&
-          SubjectChat !==
+            SubjectChat !==
             ("أُخرى..." || "استفسار مالي أو فواتير" || "عمل تقني في المنصة")
             ? `مرحبا ${userName} لاحظت أنك تواجه ${SubjectChat}, هل يمكنك تزويدي بالمزيد من التفاصيل!`
             : `مرحبا ${userName} لاحظت أنك تواجه مشكلة في الشحنة ${shipment} هل يمكنك تزويدي بالتفاصيل!`,
@@ -44,13 +43,13 @@ const page = () => {
       };
       setMessages((prev) => [...prev, useMessage]);
       setisTypeing(false);
-    }, 7000);
+    }, 8500);
     return () => {
       clearTimeout(supportMessage);
       clearTimeout(SystemMessage);
     };
   }, []);
-   useEffect(() => {
+  useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [Messages, isTypeing]);
 
@@ -173,28 +172,28 @@ const page = () => {
           </section>
         </div>
       </main>
-        <section className="bg-white py-4.5 border-0 rounded-b-xl w-full">
-          <div className="w-[95%] m-auto">
-            <div className="flex gap-3">
-              <div className="w-fit px-4.5 rounded-full py-2.5 bg-red-300 flex items-center gap-1.5">
-                <Calendar size={14} className="text-orange-700" />
-                <span className="text-sm font-bold text-orange-700">
-                  طلب إستعجال
-                </span>
-              </div>
-              <div className="w-fit px-4.5 rounded-full py-2.5 bg-blue-100 flex items-center gap-1.5">
-                <Zap size={14} className="text-slate-700" />
-                <span className="text-sm font-bold text-slate-700">
-                  تعديل موعد الإستلام
-                </span>
-              </div>
+      <section className="bg-white py-4.5 border-0 rounded-b-xl w-full">
+        <div className="w-[95%] m-auto">
+          <div className="flex gap-3">
+            <div className="w-fit px-4.5 rounded-full py-2.5 bg-red-300 flex items-center gap-1.5">
+              <Calendar size={14} className="text-orange-700" />
+              <span className="text-sm font-bold text-orange-700">
+                طلب إستعجال
+              </span>
             </div>
-            <div className="relative pt-3">
-              <div className="absolute bottom-2 right-3 hover:bg-gray-300 transition-colors duration-200 cursor-pointer w-9 h-9 rounded-full flex items-center justify-center">
-                <Link size={20} />
-              </div>
-              <form onSubmit={(e) => e.preventDefault()}>
-                
+            <div className="w-fit px-4.5 rounded-full py-2.5 bg-blue-100 flex items-center gap-1.5">
+              <Zap size={14} className="text-slate-700" />
+              <span className="text-sm font-bold text-slate-700">
+                تعديل موعد الإستلام
+              </span>
+            </div>
+          </div>
+          <div className="relative pt-3">
+            <div className="absolute bottom-2 right-3 hover:bg-gray-300 transition-colors duration-200 cursor-pointer w-9 h-9 rounded-full flex items-center justify-center">
+              <Link size={20} />
+            </div>
+            <form onSubmit={(e) => e.preventDefault()}>
+
               <input
                 type="text"
                 value={InputValue}
@@ -202,14 +201,14 @@ const page = () => {
                 className="bg-blue-50 w-full pr-15 focus:outline-none rounded-full py-3 placeholder:text-gray-60"
                 placeholder="اكتب رسالتك هنا..."
                 maxLength={100}
-                />
+              />
               <button className="bg-orange-700 cursor-pointer hover:bg-orange-800 transition-colors duration-200 absolute bottom-1.5 left-2 w-9 h-9 rounded-full flex items-center justify-center" onClick={handelaAdNewMessage}>
                 <SendHorizonal size={20} className="text-white rotate-180" />
               </button>
-                </form>
-            </div>
+            </form>
           </div>
-        </section>
+        </div>
+      </section>
     </div>
   );
 };

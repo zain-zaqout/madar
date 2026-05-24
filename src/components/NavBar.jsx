@@ -37,7 +37,7 @@ const NavBar = () => {
     <div className="h-17 w-full z-50 flex bg-white/70 border-b border-gray-400/30 shadow sticky top-0 backdrop-blur-sm">
       <div className="w-[90%] m-auto flex items-center justify-between">
         <div className="flex gap-7">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <Menu
               size={20}
               onClick={() => setMenu(true)}
