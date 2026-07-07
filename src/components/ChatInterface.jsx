@@ -6,9 +6,9 @@ import { X, Zap, Calendar, Link, SendHorizonal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
-  const { shipment, SubjectChat, Trip } = useChat();
+  const { shipment, SubjectChat, Trip, setisValid } = useChat();
   const { informition } = useData();
   const { InputValue, setInputValue, Messages, setMessages, isTypeing, setisTypeing, handelaAdNewMessage, timeNow } = useChat()
   const scrollRef = useRef(null);
@@ -89,6 +89,9 @@ const page = () => {
                 setMessages([])
                 setInputValue("")
                 setisTypeing(false)
+                setTimeout(() => {
+                  setisValid(false)
+                }, 500);
               }}
             >
               <X className="group-hover:text-red-500 group-hover:rotate-180 duration-200" />
@@ -125,7 +128,7 @@ const page = () => {
                 return (
                   <div
                     key={index}
-                    className="bg-blue-100 w-fit py-0.5 px-3 rounded-full"
+                    className={`bg-blue-100 w-fit py-0.5 max-[548px]:py-1 px-3 rounded-2xl text-center`}
                   >
                     <span className="text-sm font-semibold">
                       مرحبا {userName}, تم توجيه طلبك للقسم المختص, سارة تراجع
@@ -212,4 +215,4 @@ const page = () => {
     </div>
   );
 };
-export default page;
+export default Page;

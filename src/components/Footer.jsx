@@ -18,9 +18,9 @@ const Footer = () => {
             الامداد الذكية.
           </p>
           <div className="flex items-center gap-3">
-            <Share2 size={19} className="text-gray-400" />
-            <AtSign className="text-gray-400" />
-            <Globe size={20.5} className="text-gray-400" />
+            <Share2 size={19} className="text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-200" />
+            <AtSign size={21} className="text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-200" />
+            <Globe size={20.5} className="text-gray-400 hover:text-orange-400 cursor-pointer transition-colors duration-200" />
           </div>
         </div>
         <div>

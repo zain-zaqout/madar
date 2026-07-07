@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
 import { useShip } from "./ShipmentsContext";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export const Context = createContext();
@@ -10,11 +9,11 @@ export const SupportChatContext = ({ children }) => {
   const [SubjectChat, setSubjectChat] = useState("مشكلة في الجمركة");
   const [shipment, setshipment] = useState("استفسار عام");
   const [Trip, setTrip] = useState("");
-  
+
   const [InputValue, setInputValue] = useState("");
   const [Messages, setMessages] = useState([]);
   const [isTypeing, setisTypeing] = useState(false);
-  
+
   const [isLoading, setisLoading] = useState(false);
 
   const [isValid, setisValid] = useState(false)
